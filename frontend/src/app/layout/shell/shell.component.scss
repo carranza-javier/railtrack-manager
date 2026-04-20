@@ -1,0 +1,63 @@
+.shell-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 240px;
+  border-right: 1px solid var(--mat-sys-outline-variant);
+  background: var(--mat-sys-surface-container-low);
+}
+
+.sidenav-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 16px;
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+
+  .app-icon {
+    color: var(--mat-sys-primary);
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .app-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--mat-sys-on-surface);
+    letter-spacing: 0.5px;
+  }
+}
+
+.active-link {
+  background-color: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
+  border-radius: 8px;
+
+  mat-icon {
+    color: var(--mat-sys-on-secondary-container);
+  }
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--mat-sys-surface);
+  border-bottom: 1px solid var(--mat-sys-outline-variant);
+}
+
+.toolbar-spacer {
+  flex: 1;
+}
+
+.username {
+  font-size: 0.9rem;
+  color: var(--mat-sys-on-surface-variant);
+  margin-right: 4px;
+}
+
+.content {
+  padding: 24px;
+}

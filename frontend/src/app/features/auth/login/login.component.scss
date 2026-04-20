@@ -1,0 +1,57 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--mat-sys-surface-container-low);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 8px;
+
+  mat-card-header {
+    margin-bottom: 24px;
+  }
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+
+  .train-icon {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color: var(--mat-sys-primary);
+  }
+
+  mat-card-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.submit-btn {
+  margin-top: 8px;
+  height: 48px;
+  font-size: 1rem;
+
+  mat-spinner {
+    display: inline-block;
+  }
+}
+
+.error-message {
+  color: var(--mat-sys-error);
+  font-size: 0.875rem;
+  margin-bottom: 8px;
+  text-align: center;
+}
