@@ -1,59 +1,55 @@
-# Frontend
+# RailTrack Manager — Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.5.
+Angular 21 SPA for the RailTrack Manager application.
 
-## Development server
+## Requirements
 
-To start a local development server, run:
+- Node.js 18+
+- npm 9+
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Running locally
 
 ```bash
-ng generate component component-name
+npm install
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Opens at `http://localhost:4200`. The app expects the backend running at `http://localhost:8080`.
+
+## Building for production
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
+Output goes to `dist/frontend/`.
 
-To build the project run:
+## Project structure
+
+```
+src/app/
+├── core/
+│   ├── guards/         # Auth guard (protects routes)
+│   ├── interceptors/   # JWT interceptor (attaches Bearer token)
+│   ├── models/         # TypeScript interfaces
+│   └── services/       # AuthService
+├── features/
+│   ├── auth/login/     # Login page
+│   ├── tracks/         # Track segments feature
+│   └── incidents/      # Incidents feature
+└── layout/
+    └── shell/          # App shell: sidenav + toolbar
+```
+
+## Authentication flow
+
+1. Unauthenticated users are redirected to `/login`
+2. On successful login, the JWT is stored in `localStorage`
+3. The HTTP interceptor attaches `Authorization: Bearer <token>` to every request
+4. Logout clears storage and redirects back to `/login`
+
+## Running tests
 
 ```bash
-ng build
+npm test
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
