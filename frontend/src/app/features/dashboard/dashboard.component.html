@@ -1,0 +1,118 @@
+@if (loading()) {
+  <div class="loading-container">
+    <mat-spinner diameter="48" />
+  </div>
+} @else if (stats(); as s) {
+  <h2 class="page-title">Dashboard</h2>
+
+  <div class="metric-cards">
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <mat-icon class="metric-icon icon-blue">linear_scale</mat-icon>
+        <div class="metric-value">{{ s.totalTracks }}</div>
+        <div class="metric-label">Track Segments</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <mat-icon class="metric-icon icon-orange">warning</mat-icon>
+        <div class="metric-value">{{ s.totalIncidents }}</div>
+        <div class="metric-label">Total Incidents</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <mat-icon class="metric-icon icon-red">report_problem</mat-icon>
+        <div class="metric-value">{{ s.openIncidents }}</div>
+        <div class="metric-label">Open Incidents</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="metric-card">
+      <mat-card-content>
+        <mat-icon class="metric-icon icon-yellow">construction</mat-icon>
+        <div class="metric-value">{{ s.tracksInMaintenance }}</div>
+        <div class="metric-label">In Maintenance</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="bottom-grid">
+    <mat-card class="section-card">
+      <mat-card-header>
+        <mat-card-title>Recent Open Incidents</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        @if (recentIncidents().length === 0) {
+          <div class="empty-state">
+            <mat-icon>check_circle</mat-icon>
+            <p>No open incidents</p>
+          </div>
+        } @else {
+          <table mat-table [dataSource]="recentIncidents()">
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef>Title</th>
+              <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="severity">
+              <th mat-header-cell *matHeaderCellDef>Severity</th>
+              <td mat-cell *matCellDef="let row">
+                <span class="severity-chip severity-{{ row.severity | lowercase }}">{{ row.severity }}</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="segment">
+              <th mat-header-cell *matHeaderCellDef>Segment</th>
+              <td mat-cell *matCellDef="let row">{{ row.trackSegmentName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="reportedAt">
+              <th mat-header-cell *matHeaderCellDef>Reported</th>
+              <td mat-cell *matCellDef="let row">{{ formatDate(row.reportedAt) }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="incidentColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: incidentColumns"></tr>
+          </table>
+        }
+      </mat-card-content>
+    </mat-card>
+
+    <div class="side-stats">
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>Tracks by Status</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="stat-rows">
+            @for (entry of statusEntries(s.tracksByStatus); track entry.key) {
+              <div class="stat-row">
+                <span class="status-chip status-{{ entry.key | lowercase }}">{{ entry.key }}</span>
+                <span class="stat-count">{{ entry.value }}</span>
+              </div>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>Incidents by Severity</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="stat-rows">
+            @for (entry of statusEntries(s.incidentsBySeverity); track entry.key) {
+              <div class="stat-row">
+                <span class="severity-chip severity-{{ entry.key | lowercase }}">{{ entry.key }}</span>
+                <span class="stat-count">{{ entry.value }}</span>
+              </div>
+            }
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+}

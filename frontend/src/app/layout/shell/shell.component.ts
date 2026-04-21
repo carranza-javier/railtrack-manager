@@ -35,6 +35,7 @@ export class ShellComponent {
   readonly sidenavOpen = signal(true);
 
   readonly navItems: NavItem[] = [
+    { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
     { label: 'Track Segments', icon: 'linear_scale', route: '/tracks' },
     { label: 'Incidents', icon: 'warning', route: '/incidents' },
   ];

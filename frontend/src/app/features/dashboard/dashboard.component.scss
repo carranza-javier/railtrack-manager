@@ -1,0 +1,133 @@
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding: 64px;
+}
+
+.page-title {
+  margin: 0 0 24px;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.metric-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.metric-card {
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+    gap: 8px;
+  }
+}
+
+.metric-icon {
+  font-size: 36px;
+  width: 36px;
+  height: 36px;
+
+  &.icon-blue { color: #1565c0; }
+  &.icon-orange { color: #e65100; }
+  &.icon-red { color: #c62828; }
+  &.icon-yellow { color: #f57f17; }
+}
+
+.metric-value {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--mat-sys-on-surface);
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: var(--mat-sys-on-surface-variant);
+  text-align: center;
+}
+
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
+  align-items: start;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.section-card {
+  mat-card-header { margin-bottom: 8px; }
+
+  table { width: 100%; }
+}
+
+.side-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stat-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 8px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-count {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  color: var(--mat-sys-on-surface-variant);
+
+  mat-icon { font-size: 48px; width: 48px; height: 48px; color: #2e7d32; }
+  p { margin: 0; }
+}
+
+.severity-chip,
+.status-chip {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.severity-chip {
+  &.severity-low { background: #e8f5e9; color: #2e7d32; }
+  &.severity-medium { background: #fff8e1; color: #f57f17; }
+  &.severity-high { background: #fff3e0; color: #e65100; }
+  &.severity-critical { background: #ffebee; color: #c62828; }
+}
+
+.status-chip {
+  &.status-operational { background: #e8f5e9; color: #2e7d32; }
+  &.status-maintenance { background: #fff8e1; color: #f57f17; }
+  &.status-closed { background: #ffebee; color: #c62828; }
+}

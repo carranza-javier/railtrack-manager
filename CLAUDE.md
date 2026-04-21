@@ -30,4 +30,4 @@ Developed as a technical portfolio project targeting SBB/VSTG interview environm
 - [x] Day 2: Spring Security + JWT authentication
 - [x] Day 3: Angular base structure + routing
 - [x] Day 4: Full CRUD with frontend/backend integration
-- [ ] Day 5: Dashboard + statistics + final polish
+- [x] Day 5: Dashboard + statistics + final polish

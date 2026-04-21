@@ -65,7 +65,7 @@ public class IncidentService {
                 .orElseThrow(() -> new ResourceNotFoundException("TrackSegment", id));
     }
 
-    private IncidentResponse toResponse(Incident incident) {
+    IncidentResponse toResponse(Incident incident) {
         return IncidentResponse.builder()
                 .id(incident.getId())
                 .title(incident.getTitle())

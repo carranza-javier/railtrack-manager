@@ -11,4 +11,6 @@ import java.util.List;
 public interface TrackSegmentRepository extends JpaRepository<TrackSegment, Long> {
 
     List<TrackSegment> findByStatus(TrackStatus status);
+
+    long countByStatus(TrackStatus status);
 }
