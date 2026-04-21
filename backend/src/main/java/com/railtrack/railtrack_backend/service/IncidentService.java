@@ -8,9 +8,9 @@ import com.railtrack.railtrack_backend.model.TrackSegment;
 import com.railtrack.railtrack_backend.repository.IncidentRepository;
 import com.railtrack.railtrack_backend.repository.TrackSegmentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,10 +19,8 @@ public class IncidentService {
     private final IncidentRepository incidentRepository;
     private final TrackSegmentRepository trackSegmentRepository;
 
-    public List<IncidentResponse> findAll() {
-        return incidentRepository.findAll().stream()
-                .map(this::toResponse)
-                .toList();
+    public Page<IncidentResponse> findAll(Pageable pageable) {
+        return incidentRepository.findAll(pageable).map(this::toResponse);
     }
 
     public IncidentResponse findById(Long id) {

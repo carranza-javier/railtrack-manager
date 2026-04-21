@@ -46,7 +46,7 @@ export class IncidentFormDialogComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.trackService.getAll().subscribe((t) => this.tracks.set(t));
+    this.trackService.getList().subscribe((page) => this.tracks.set(page.content));
   }
 
   submit() {

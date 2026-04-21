@@ -5,11 +5,13 @@ import com.railtrack.railtrack_backend.dto.IncidentResponse;
 import com.railtrack.railtrack_backend.service.IncidentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/incidents")
@@ -19,8 +21,9 @@ public class IncidentController {
     private final IncidentService service;
 
     @GetMapping
-    public ResponseEntity<List<IncidentResponse>> getAll() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<Page<IncidentResponse>> getAll(
+            @PageableDefault(size = 10, sort = "reportedAt", direction = Sort.Direction.DESC) Pageable pageable) {
+        return ResponseEntity.ok(service.findAll(pageable));
     }
 
     @GetMapping("/{id}")

@@ -60,5 +60,13 @@
     @if (incidents().length === 0) {
       <p class="empty-state">No incidents found.</p>
     }
+
+    <mat-paginator
+      [length]="totalElements()"
+      [pageSize]="pageSize()"
+      [pageIndex]="pageIndex()"
+      [pageSizeOptions]="[5, 10, 25]"
+      (page)="onPageChange($event)"
+    />
   </div>
 }

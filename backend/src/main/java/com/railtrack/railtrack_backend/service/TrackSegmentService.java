@@ -6,9 +6,9 @@ import com.railtrack.railtrack_backend.exception.ResourceNotFoundException;
 import com.railtrack.railtrack_backend.model.TrackSegment;
 import com.railtrack.railtrack_backend.repository.TrackSegmentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -16,10 +16,8 @@ public class TrackSegmentService {
 
     private final TrackSegmentRepository repository;
 
-    public List<TrackSegmentResponse> findAll() {
-        return repository.findAll().stream()
-                .map(this::toResponse)
-                .toList();
+    public Page<TrackSegmentResponse> findAll(Pageable pageable) {
+        return repository.findAll(pageable).map(this::toResponse);
     }
 
     public TrackSegmentResponse findById(Long id) {

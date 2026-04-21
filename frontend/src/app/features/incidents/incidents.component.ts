@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Incident } from '../../core/models/incident.model';
 import { IncidentService } from '../../core/services/incident.service';
 import { IncidentFormDialogComponent } from './incident-form-dialog/incident-form-dialog.component';
@@ -20,6 +21,7 @@ import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dial
     MatIconModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    MatPaginatorModule,
   ],
   templateUrl: './incidents.component.html',
   styleUrl: './incidents.component.scss',
@@ -30,6 +32,9 @@ export class IncidentsComponent implements OnInit {
 
   readonly incidents = signal<Incident[]>([]);
   readonly loading = signal(true);
+  readonly totalElements = signal(0);
+  readonly pageSize = signal(10);
+  readonly pageIndex = signal(0);
 
   readonly columns = ['title', 'severity', 'status', 'segment', 'reportedAt', 'actions'];
 
@@ -39,10 +44,20 @@ export class IncidentsComponent implements OnInit {
 
   load() {
     this.loading.set(true);
-    this.service.getAll().subscribe({
-      next: (data) => { this.incidents.set(data); this.loading.set(false); },
+    this.service.getAll(this.pageIndex(), this.pageSize()).subscribe({
+      next: (page) => {
+        this.incidents.set(page.content);
+        this.totalElements.set(page.totalElements);
+        this.loading.set(false);
+      },
       error: () => this.loading.set(false),
     });
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageIndex.set(event.pageIndex);
+    this.pageSize.set(event.pageSize);
+    this.load();
   }
 
   openCreate() {
