@@ -27,7 +27,7 @@ Developed as a technical portfolio project targeting SBB/VSTG interview environm
 
 ## Progress
 - [x] Day 1: JPA entities + basic REST endpoints
-- [ ] Day 2: Spring Security + JWT authentication
+- [x] Day 2: Spring Security + JWT authentication
 - [x] Day 3: Angular base structure + routing
-- [ ] Day 4: Full CRUD with frontend/backend integration
+- [x] Day 4: Full CRUD with frontend/backend integration
 - [ ] Day 5: Dashboard + statistics + final polish

@@ -36,3 +36,15 @@ body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+
+.dialog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 8px;
+  min-width: 460px;
+
+  mat-form-field {
+    width: 100%;
+  }
+}

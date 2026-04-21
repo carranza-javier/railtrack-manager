@@ -56,10 +56,10 @@ The backend exposes a REST API at `http://localhost:8080/api`.
 |--------|-----------------------------|------|--------------------------|
 | POST   | `/api/auth/register`        | No   | Create account           |
 | POST   | `/api/auth/login`           | No   | Get JWT token            |
-| GET    | `/api/track-segments`       | Yes  | List track segments      |
-| POST   | `/api/track-segments`       | Yes  | Create track segment     |
-| PUT    | `/api/track-segments/{id}`  | Yes  | Update track segment     |
-| DELETE | `/api/track-segments/{id}`  | Yes  | Delete track segment     |
+| GET    | `/api/tracks`               | Yes  | List track segments      |
+| POST   | `/api/tracks`               | Yes  | Create track segment     |
+| PUT    | `/api/tracks/{id}`          | Yes  | Update track segment     |
+| DELETE | `/api/tracks/{id}`          | Yes  | Delete track segment     |
 | GET    | `/api/incidents`            | Yes  | List incidents           |
 | POST   | `/api/incidents`            | Yes  | Create incident          |
 | PUT    | `/api/incidents/{id}`       | Yes  | Update incident          |

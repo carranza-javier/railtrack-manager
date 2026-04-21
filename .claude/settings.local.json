@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./mvnw spring-boot:run)",
+      "Bash(curl -s http://localhost:8080/actuator/health)",
+      "Bash(curl -s http://localhost:8080/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/)",
+      "Bash(netstat -ano)",
+      "Bash(xargs -I{} taskkill //PID {} //F)",
+      "Bash(curl -s http://localhost:8080/api/tracks)",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -s http://localhost:8080/api/incidents)",
+      "Bash(npx ng *)",
+      "Bash(npm install *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Day 3: Angular base structure + routing *)",
+      "Bash(git commit *)",
+      "Bash(powershell *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/api/auth/login -X POST -H \"Content-Type: application/json\" -d '{}')"
+    ]
+  }
+}

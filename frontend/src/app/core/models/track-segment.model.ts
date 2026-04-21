@@ -8,7 +8,7 @@ export interface TrackSegment {
   trackType: TrackType;
   status: TrackStatus;
   length: number;
-  lastMaintenanceDate: string;
+  lastMaintenanceDate?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -18,6 +18,6 @@ export interface TrackSegmentDto {
   lineCode: string;
   trackType: TrackType;
   status: TrackStatus;
-  length: number;
-  lastMaintenanceDate: string;
+  length?: number;
+  lastMaintenanceDate?: string;
 }
