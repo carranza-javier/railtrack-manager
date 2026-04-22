@@ -1,7 +1,7 @@
 package com.railtrack.railtrack_backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.railtrack.railtrack_backend.dto.IncidentDto;
+import com.railtrack.railtrack_backend.dto.IncidentRequest;
 import com.railtrack.railtrack_backend.dto.IncidentResponse;
 import com.railtrack.railtrack_backend.exception.GlobalExceptionHandler;
 import com.railtrack.railtrack_backend.exception.ResourceNotFoundException;
@@ -65,8 +65,8 @@ class IncidentControllerTest {
                 .build();
     }
 
-    private IncidentDto buildDto() {
-        IncidentDto dto = new IncidentDto();
+    private IncidentRequest buildDto() {
+        IncidentRequest dto = new IncidentRequest();
         dto.setTitle("Signal failure");
         dto.setDescription("Red signal malfunction");
         dto.setSeverity(IncidentSeverity.HIGH);
@@ -109,7 +109,7 @@ class IncidentControllerTest {
 
     @Test
     void givenValidDto_whenCreate_thenReturns201WithResponse() throws Exception {
-        when(service.create(any(IncidentDto.class))).thenReturn(buildResponse());
+        when(service.create(any(IncidentRequest.class))).thenReturn(buildResponse());
 
         mockMvc.perform(post("/api/incidents")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -122,7 +122,7 @@ class IncidentControllerTest {
 
     @Test
     void givenInvalidDto_whenCreate_thenReturns400() throws Exception {
-        IncidentDto invalid = new IncidentDto();
+        IncidentRequest invalid = new IncidentRequest();
 
         mockMvc.perform(post("/api/incidents")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -134,9 +134,9 @@ class IncidentControllerTest {
     void givenValidDto_whenUpdate_thenReturns200WithUpdatedResponse() throws Exception {
         IncidentResponse updated = buildResponse();
         updated.setTitle("Track switch broken");
-        when(service.update(eq(1L), any(IncidentDto.class))).thenReturn(updated);
+        when(service.update(eq(1L), any(IncidentRequest.class))).thenReturn(updated);
 
-        IncidentDto dto = buildDto();
+        IncidentRequest dto = buildDto();
         dto.setTitle("Track switch broken");
 
         mockMvc.perform(put("/api/incidents/1")
@@ -148,7 +148,7 @@ class IncidentControllerTest {
 
     @Test
     void givenNonExistingId_whenUpdate_thenReturns404() throws Exception {
-        when(service.update(eq(99L), any(IncidentDto.class)))
+        when(service.update(eq(99L), any(IncidentRequest.class)))
                 .thenThrow(new ResourceNotFoundException("Incident", 99L));
 
         mockMvc.perform(put("/api/incidents/99")

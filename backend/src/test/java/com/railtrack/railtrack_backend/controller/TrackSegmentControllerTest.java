@@ -1,7 +1,7 @@
 package com.railtrack.railtrack_backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.railtrack.railtrack_backend.dto.TrackSegmentDto;
+import com.railtrack.railtrack_backend.dto.TrackSegmentRequest;
 import com.railtrack.railtrack_backend.dto.TrackSegmentResponse;
 import com.railtrack.railtrack_backend.exception.GlobalExceptionHandler;
 import com.railtrack.railtrack_backend.exception.ResourceNotFoundException;
@@ -65,8 +65,8 @@ class TrackSegmentControllerTest {
                 .build();
     }
 
-    private TrackSegmentDto buildDto() {
-        TrackSegmentDto dto = new TrackSegmentDto();
+    private TrackSegmentRequest buildDto() {
+        TrackSegmentRequest dto = new TrackSegmentRequest();
         dto.setName("Segment A");
         dto.setLineCode("LC-01");
         dto.setTrackType(TrackType.MAIN);
@@ -109,7 +109,7 @@ class TrackSegmentControllerTest {
 
     @Test
     void givenValidDto_whenCreate_thenReturns201WithResponse() throws Exception {
-        when(service.create(any(TrackSegmentDto.class))).thenReturn(buildResponse());
+        when(service.create(any(TrackSegmentRequest.class))).thenReturn(buildResponse());
 
         mockMvc.perform(post("/api/tracks")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -121,7 +121,7 @@ class TrackSegmentControllerTest {
 
     @Test
     void givenInvalidDto_whenCreate_thenReturns400() throws Exception {
-        TrackSegmentDto invalid = new TrackSegmentDto();
+        TrackSegmentRequest invalid = new TrackSegmentRequest();
 
         mockMvc.perform(post("/api/tracks")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -133,9 +133,9 @@ class TrackSegmentControllerTest {
     void givenValidDto_whenUpdate_thenReturns200WithUpdatedResponse() throws Exception {
         TrackSegmentResponse updated = buildResponse();
         updated.setName("Updated Segment");
-        when(service.update(eq(1L), any(TrackSegmentDto.class))).thenReturn(updated);
+        when(service.update(eq(1L), any(TrackSegmentRequest.class))).thenReturn(updated);
 
-        TrackSegmentDto dto = buildDto();
+        TrackSegmentRequest dto = buildDto();
         dto.setName("Updated Segment");
 
         mockMvc.perform(put("/api/tracks/1")
@@ -147,7 +147,7 @@ class TrackSegmentControllerTest {
 
     @Test
     void givenNonExistingId_whenUpdate_thenReturns404() throws Exception {
-        when(service.update(eq(99L), any(TrackSegmentDto.class)))
+        when(service.update(eq(99L), any(TrackSegmentRequest.class)))
                 .thenThrow(new ResourceNotFoundException("TrackSegment", 99L));
 
         mockMvc.perform(put("/api/tracks/99")

@@ -1,6 +1,6 @@
 package com.railtrack.railtrack_backend.service;
 
-import com.railtrack.railtrack_backend.dto.IncidentDto;
+import com.railtrack.railtrack_backend.dto.IncidentRequest;
 import com.railtrack.railtrack_backend.dto.IncidentResponse;
 import com.railtrack.railtrack_backend.exception.ResourceNotFoundException;
 import com.railtrack.railtrack_backend.model.Incident;
@@ -62,8 +62,8 @@ class IncidentServiceTest {
                 .build();
     }
 
-    private IncidentDto buildDto() {
-        IncidentDto dto = new IncidentDto();
+    private IncidentRequest buildDto() {
+        IncidentRequest dto = new IncidentRequest();
         dto.setTitle("Signal failure");
         dto.setDescription("Red signal malfunction");
         dto.setSeverity(IncidentSeverity.HIGH);
@@ -137,7 +137,7 @@ class IncidentServiceTest {
         when(trackSegmentRepository.findById(1L)).thenReturn(Optional.of(segment));
         when(incidentRepository.save(any(Incident.class))).thenReturn(updated);
 
-        IncidentDto dto = buildDto();
+        IncidentRequest dto = buildDto();
         dto.setTitle("Track switch broken");
 
         IncidentResponse result = service.update(1L, dto);

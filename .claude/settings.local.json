@@ -20,7 +20,9 @@
       "Bash(curl -s -X POST http://localhost:8080/api/auth/register -H 'Content-Type: application/json' -d '{\"username\":\"testuser\",\"password\":\"secret123\"}')",
       "Bash(python -m json.tool)",
       "Bash(curl -s -X POST http://localhost:8080/api/tracks -H 'Content-Type: application/json' -H 'Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ0ZXN0dXNlciIsImlhdCI6MTc3Njc5OTcxOSwiZXhwIjoxNzc2ODg2MTE5fQ.WriuKKZ2zmiCTC--KXwNwFMJQqQ3NL0aaZvrR_Aq6XVl-Ha2zadTbIaJheJmKjve' -d '{\"name\":\"Zürich HB - Bern\",\"lineCode\":\"IC8\",\"trackType\":\"MAIN\",\"status\":\"OPERATIONAL\",\"length\":120.5,\"lastMaintenanceDate\":\"2026-01-10\"}')",
-      "Bash(curl *)"
+      "Bash(curl *)",
+      "Bash(./mvnw test *)",
+      "Bash(git push *)"
     ]
   }
 }

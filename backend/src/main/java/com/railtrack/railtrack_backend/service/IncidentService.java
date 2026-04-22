@@ -1,6 +1,6 @@
 package com.railtrack.railtrack_backend.service;
 
-import com.railtrack.railtrack_backend.dto.IncidentDto;
+import com.railtrack.railtrack_backend.dto.IncidentRequest;
 import com.railtrack.railtrack_backend.dto.IncidentResponse;
 import com.railtrack.railtrack_backend.exception.ResourceNotFoundException;
 import com.railtrack.railtrack_backend.model.Incident;
@@ -27,7 +27,7 @@ public class IncidentService {
         return toResponse(getOrThrow(id));
     }
 
-    public IncidentResponse create(IncidentDto dto) {
+    public IncidentResponse create(IncidentRequest dto) {
         TrackSegment segment = getSegmentOrThrow(dto.getTrackSegmentId());
         Incident incident = Incident.builder()
                 .title(dto.getTitle())
@@ -39,7 +39,7 @@ public class IncidentService {
         return toResponse(incidentRepository.save(incident));
     }
 
-    public IncidentResponse update(Long id, IncidentDto dto) {
+    public IncidentResponse update(Long id, IncidentRequest dto) {
         Incident incident = getOrThrow(id);
         TrackSegment segment = getSegmentOrThrow(dto.getTrackSegmentId());
         incident.setTitle(dto.getTitle());

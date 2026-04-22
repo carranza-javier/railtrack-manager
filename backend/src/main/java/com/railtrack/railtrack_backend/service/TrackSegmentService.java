@@ -1,6 +1,6 @@
 package com.railtrack.railtrack_backend.service;
 
-import com.railtrack.railtrack_backend.dto.TrackSegmentDto;
+import com.railtrack.railtrack_backend.dto.TrackSegmentRequest;
 import com.railtrack.railtrack_backend.dto.TrackSegmentResponse;
 import com.railtrack.railtrack_backend.exception.ResourceNotFoundException;
 import com.railtrack.railtrack_backend.model.TrackSegment;
@@ -24,7 +24,7 @@ public class TrackSegmentService {
         return toResponse(getOrThrow(id));
     }
 
-    public TrackSegmentResponse create(TrackSegmentDto dto) {
+    public TrackSegmentResponse create(TrackSegmentRequest dto) {
         TrackSegment segment = TrackSegment.builder()
                 .name(dto.getName())
                 .lineCode(dto.getLineCode())
@@ -36,7 +36,7 @@ public class TrackSegmentService {
         return toResponse(repository.save(segment));
     }
 
-    public TrackSegmentResponse update(Long id, TrackSegmentDto dto) {
+    public TrackSegmentResponse update(Long id, TrackSegmentRequest dto) {
         TrackSegment segment = getOrThrow(id);
         segment.setName(dto.getName());
         segment.setLineCode(dto.getLineCode());

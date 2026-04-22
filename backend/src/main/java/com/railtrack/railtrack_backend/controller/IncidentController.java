@@ -1,6 +1,6 @@
 package com.railtrack.railtrack_backend.controller;
 
-import com.railtrack.railtrack_backend.dto.IncidentDto;
+import com.railtrack.railtrack_backend.dto.IncidentRequest;
 import com.railtrack.railtrack_backend.dto.IncidentResponse;
 import com.railtrack.railtrack_backend.service.IncidentService;
 import jakarta.validation.Valid;
@@ -32,13 +32,13 @@ public class IncidentController {
     }
 
     @PostMapping
-    public ResponseEntity<IncidentResponse> create(@Valid @RequestBody IncidentDto dto) {
+    public ResponseEntity<IncidentResponse> create(@Valid @RequestBody IncidentRequest dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<IncidentResponse> update(@PathVariable Long id,
-                                                   @Valid @RequestBody IncidentDto dto) {
+                                                   @Valid @RequestBody IncidentRequest dto) {
         return ResponseEntity.ok(service.update(id, dto));
     }
 

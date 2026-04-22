@@ -9,7 +9,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class TrackSegmentDto {
+public class TrackSegmentRequest {
 
     @NotBlank
     private String name;

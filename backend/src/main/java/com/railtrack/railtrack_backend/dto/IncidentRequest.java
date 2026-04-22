@@ -7,7 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class IncidentDto {
+public class IncidentRequest {
 
     @NotBlank
     private String title;

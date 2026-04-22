@@ -1,6 +1,6 @@
 package com.railtrack.railtrack_backend.controller;
 
-import com.railtrack.railtrack_backend.dto.TrackSegmentDto;
+import com.railtrack.railtrack_backend.dto.TrackSegmentRequest;
 import com.railtrack.railtrack_backend.dto.TrackSegmentResponse;
 import com.railtrack.railtrack_backend.service.TrackSegmentService;
 import jakarta.validation.Valid;
@@ -32,13 +32,13 @@ public class TrackSegmentController {
     }
 
     @PostMapping
-    public ResponseEntity<TrackSegmentResponse> create(@Valid @RequestBody TrackSegmentDto dto) {
+    public ResponseEntity<TrackSegmentResponse> create(@Valid @RequestBody TrackSegmentRequest dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(dto));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TrackSegmentResponse> update(@PathVariable Long id,
-                                                       @Valid @RequestBody TrackSegmentDto dto) {
+                                                       @Valid @RequestBody TrackSegmentRequest dto) {
         return ResponseEntity.ok(service.update(id, dto));
     }
 
